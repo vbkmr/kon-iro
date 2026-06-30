@@ -15,6 +15,10 @@ project and generalized into reusable design tokens.
 **▶ Live palette: [vbkmr.github.io/kon-iro](https://vbkmr.github.io/kon-iro/)** — browse
 every 和色 in both themes and click any swatch to copy its hex.
 
+| 紺 `kon` — dark (default) | 和紙 `washi` — light |
+|:---:|:---:|
+| [![kon-iro 紺 dark theme](docs/screenshots/kon-dark.png)](https://vbkmr.github.io/kon-iro/?theme=kon) | [![kon-iro 和紙 light theme](docs/screenshots/washi-light.png)](https://vbkmr.github.io/kon-iro/?theme=washi) |
+
 ---
 
 ## Two themes
