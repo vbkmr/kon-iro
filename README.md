@@ -119,10 +119,11 @@ tokens/        ← source of truth (W3C DTCG JSON)
   semantic.dark    · 紺  theme: bg / surface / text / accent … → palette
   semantic.light   · 和紙 theme
   base.json        · type, space, radius, motion
-dist/          ← what npm publishes (kept in sync with tokens)
+scripts/build.mjs ← dependency-free generator (tokens → dist)
+dist/          ← GENERATED, what npm publishes (do not hand-edit)
   kon-iro.css      · CSS variables, both themes, zero-build
   kon-iro.ts       · typed token object
-  tailwind-preset  · utility mapping → the CSS vars
+  tailwind-preset  · utility mapping → the CSS vars (hand-maintained)
 docs/index.html ← live palette showcase
 ```
 
@@ -130,13 +131,15 @@ Two tiers on purpose: the **palette tier** carries the cultural identity (and ca
 be re-tuned), the **semantic tier** (`--kon-bg`, `--kon-accent`, …) is what apps
 consume — so the look can evolve without breaking anything downstream.
 
-`npm run build` regenerates the outputs from `tokens/` via
-[Style Dictionary](https://styledictionary.com); native targets
-(SwiftUI / Compose / React Native) plug into the same source.
+`tokens/` is the single source of truth. `npm run build` runs
+`scripts/build.mjs` (Node built-ins only — no dependencies) to regenerate
+`dist/kon-iro.css` and `dist/kon-iro.ts`. The DTCG token files stay portable, so
+they can also feed Style Dictionary or native targets (SwiftUI / Compose /
+React Native) later.
 
 ## Roadmap
 
-- [ ] Wire the per-theme Style Dictionary build (skeleton in `style-dictionary.config.mjs`)
+- [x] Generate `dist/` from `tokens/` (dependency-free `scripts/build.mjs`)
 - [ ] WCAG AA contrast audit for every text/accent-on-ground pairing
 - [ ] Native token outputs (SwiftUI, Compose, React Native)
 - [ ] Optional headless components

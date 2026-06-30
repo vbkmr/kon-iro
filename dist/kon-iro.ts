@@ -1,6 +1,6 @@
 /**
  * kon-iro 紺色 — design tokens as a typed object.
- * Hand-authored mirror of /tokens (also regenerable via `npm run build`).
+ * GENERATED from /tokens by scripts/build.mjs — do not edit by hand.
  * Use for JS-in-CSS, React Native, charts, or anywhere CSS vars don't reach.
  */
 
@@ -18,6 +18,8 @@ export const palette = {
   moegi: { hex: "#aacf53", kanji: "萌黄", romaji: "moegi" },
   hitan: { hex: "#f0937a", kanji: "退紅", romaji: "taikō" },
   washi: { hex: "#efe7d3", kanji: "生成り", romaji: "kinari" },
+  washiRaised: { hex: "#f7f1e1", kanji: "白練", romaji: "shironeri" },
+  washiLine: { hex: "#dcd0b4", kanji: "砂色", romaji: "suna-iro" },
   kobicha: { hex: "#6a5d21", kanji: "媚茶", romaji: "kobicha" },
   nando: { hex: "#1f6f78", kanji: "納戸色", romaji: "nando-iro" },
   chitose: { hex: "#316745", kanji: "千歳緑", romaji: "chitose-midori" },
@@ -28,32 +30,32 @@ export const palette = {
 /** Semantic color tokens per theme. */
 export const color = {
   kon: {
-    bg: palette.konDeep.hex,
-    surface: palette.kon.hex,
-    surfaceRaised: palette.konPanel.hex,
-    line: palette.konLine.hex,
-    text: palette.neri.hex,
-    textMuted: palette.ginnezu.hex,
-    link: palette.sango.hex,
-    accent: palette.yamabuki.hex,
-    info: palette.asagi.hex,
-    success: palette.moegi.hex,
-    warm: palette.hitan.hex,
-    focus: palette.yamabuki.hex,
+    bg: "#0b1430",
+    surface: "#11213f",
+    surfaceRaised: "#16274d",
+    line: "#2b3e68",
+    text: "#f0e8d6",
+    textMuted: "#a9adb0",
+    link: "#f5b1aa",
+    accent: "#f8b500",
+    info: "#5bb7c0",
+    success: "#aacf53",
+    warm: "#f0937a",
+    focus: "#f8b500",
   },
   washi: {
-    bg: palette.washi.hex,
+    bg: "#efe7d3",
     surface: "#f7f1e1",
     surfaceRaised: "#fdfaf1",
     line: "#dcd0b4",
-    text: palette.konDeep.hex,
-    textMuted: palette.nibi.hex,
-    link: palette.suo.hex,
-    accent: palette.kobicha.hex,
-    info: palette.nando.hex,
-    success: palette.chitose.hex,
-    warm: palette.suo.hex,
-    focus: palette.kobicha.hex,
+    text: "#0b1430",
+    textMuted: "#5e5d56",
+    link: "#9e3d3f",
+    accent: "#6a5d21",
+    info: "#1f6f78",
+    success: "#316745",
+    warm: "#9e3d3f",
+    focus: "#6a5d21",
   },
 } as const;
 
