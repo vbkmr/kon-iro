@@ -12,6 +12,9 @@ drop into any web or app project.
 Extracted from the [一日一語 / ichinichi-ichigo](https://github.com/vbkmr/ichinichi-ichigo)
 project and generalized into reusable design tokens.
 
+**▶ Live palette: [vbkmr.github.io/kon-iro](https://vbkmr.github.io/kon-iro/)** — browse
+every 和色 in both themes and click any swatch to copy its hex.
+
 ---
 
 ## Two themes
@@ -124,8 +127,13 @@ dist/          ← GENERATED, what npm publishes (do not hand-edit)
   kon-iro.css      · CSS variables, both themes, zero-build
   kon-iro.ts       · typed token object
   tailwind-preset  · utility mapping → the CSS vars (hand-maintained)
-docs/index.html ← live palette showcase
+docs/index.html ← live palette showcase (published to GitHub Pages)
 ```
+
+The showcase reads its hex values from `dist/kon-iro.css` at runtime, so the
+[live site](https://vbkmr.github.io/kon-iro/) always mirrors the published colors.
+A GitHub Actions workflow (`.github/workflows/pages.yml`) assembles `docs/index.html`
+together with `dist/` and deploys it on every push to `main`.
 
 Two tiers on purpose: the **palette tier** carries the cultural identity (and can
 be re-tuned), the **semantic tier** (`--kon-bg`, `--kon-accent`, …) is what apps
