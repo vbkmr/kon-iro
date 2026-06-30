@@ -257,10 +257,16 @@
         renderPalette();
         try { localStorage.setItem("kon-iro-theme", name); } catch {}
       }
-      try {
-        const saved = localStorage.getItem("kon-iro-theme");
-        if (saved === "kon" || saved === "washi") html.dataset.theme = saved;
-      } catch {}
+      // Precedence: ?theme= deep-link → saved preference → default 紺.
+      const urlTheme = new URLSearchParams(location.search).get("theme");
+      if (urlTheme === "kon" || urlTheme === "washi") {
+        html.dataset.theme = urlTheme;
+      } else {
+        try {
+          const saved = localStorage.getItem("kon-iro-theme");
+          if (saved === "kon" || saved === "washi") html.dataset.theme = saved;
+        } catch {}
+      }
 
       document.getElementById("toggle").addEventListener("click", () => {
         applyTheme(html.dataset.theme === "washi" ? "kon" : "washi");
