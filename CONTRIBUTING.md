@@ -5,9 +5,10 @@ changes is *coherence with the palette*, not breadth.
 
 ## Principles
 
-- **Tokens are the source of truth.** Edit `tokens/*.json`, never the generated
-  outputs by hand for a *value* change. (The `dist/` files are curated mirrors of
-  the tokens — keep them in step when you change a token.)
+- **Tokens are the source of truth.** Edit `tokens/*.json`, then run
+  `npm run build` to regenerate `dist/kon-iro.css` and `dist/kon-iro.ts`. Never
+  hand-edit those generated files. (`dist/tailwind-preset.cjs` is hand-maintained
+  — it only references CSS var *names*, not values.)
 - **Two tiers.** Raw 和色 live in `palette.json` with their kanji/romaji. Apps
   consume the **semantic** tier (`bg`, `surface`, `text`, `accent`, …). Add new
   meaning at the semantic tier; add new color at the palette tier.
@@ -30,8 +31,7 @@ contrast table (foreground × background → ratio) in the PR.
 ## Dev
 
 ```sh
-npm install
-npm run build      # regenerate outputs from tokens/ (skeleton — see roadmap)
+npm run build      # regenerate dist/ from tokens/ (no install needed — Node built-ins only)
 open docs/index.html
 ```
 
