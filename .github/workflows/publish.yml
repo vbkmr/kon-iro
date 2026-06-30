@@ -1,0 +1,38 @@
+name: Publish to npm
+
+# Publishes kon-iro to the npm registry.
+#
+# Triggers:
+#   • A published GitHub Release  — the normal path (tag the release `vX.Y.Z`).
+#   • Manual dispatch             — for re-runs / first publish.
+#
+# Setup (one-time): add an automation token from npmjs.com as the repository
+# secret `NPM_TOKEN` (Settings → Secrets and variables → Actions). The build is
+# dependency-free and `prepublishOnly` regenerates dist/ from /tokens before
+# publishing, so the registry always gets a fresh build.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for npm provenance
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Build from tokens
+        run: npm run build
+
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
