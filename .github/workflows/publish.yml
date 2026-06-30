@@ -1,15 +1,22 @@
 name: Publish to npm
 
-# Publishes kon-iro to the npm registry.
+# Publishes kon-iro to the npm registry via npm Trusted Publishing (OIDC).
 #
 # Triggers:
 #   • A published GitHub Release  — the normal path (tag the release `vX.Y.Z`).
-#   • Manual dispatch             — for re-runs / first publish.
+#   • Manual dispatch             — for re-runs.
 #
-# Setup (one-time): add an automation token from npmjs.com as the repository
-# secret `NPM_TOKEN` (Settings → Secrets and variables → Actions). The build is
-# dependency-free and `prepublishOnly` regenerates dist/ from /tokens before
-# publishing, so the registry always gets a fresh build.
+# Auth: NO stored npm token. The job exchanges a short-lived GitHub OIDC
+# identity for publish rights, so there is nothing to leak, scope, or rotate.
+#
+# One-time setup on npmjs.com (required before the next release):
+#   npmjs.com → package `kon-iro` → Settings → Trusted Publisher → GitHub Actions
+#     organization or user: vbkmr
+#     repository:           kon-iro
+#     workflow filename:    publish.yml
+#   Trusted publishing cannot create a brand-new package, so the first publish
+#   (v0.1.0) used a token; every release after this uses OIDC. The NPM_TOKEN
+#   secret can be deleted once a release succeeds through this workflow.
 on:
   release:
     types: [published]
@@ -17,10 +24,10 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # trusted publishing requires a cloud-hosted runner
     permissions:
       contents: read
-      id-token: write # required for npm provenance
+      id-token: write # required: lets npm exchange the OIDC token for publish auth
     steps:
       - uses: actions/checkout@v4
 
@@ -29,10 +36,14 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
 
+      # Trusted publishing needs npm >= 11.5.1 — newer than the npm Node bundles.
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Build from tokens
         run: npm run build
 
+      # No NODE_AUTH_TOKEN: npm detects the OIDC environment and authenticates
+      # via the trusted publisher. Provenance is generated automatically.
       - name: Publish
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

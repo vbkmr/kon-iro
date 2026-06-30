@@ -1,5 +1,9 @@
 # kon-iro 紺色
 
+[![npm](https://img.shields.io/npm/v/kon-iro?color=11213f&label=npm)](https://www.npmjs.com/package/kon-iro)
+[![provenance](https://img.shields.io/badge/provenance-signed-11213f)](https://www.npmjs.com/package/kon-iro#provenance)
+[![license: MIT](https://img.shields.io/npm/l/kon-iro?color=11213f)](LICENSE)
+
 **A Japanese-traditional (和色 _wairo_) design theme.** Deep indigo on dark,
 warm washi-paper on light — a small, opinionated palette and type system you can
 drop into any web or app project.
