@@ -1,0 +1,17 @@
+{
+  "$description": "kon-iro — semantic tier, DARK 紺 theme (default). These are the tokens apps consume; they reference the 和色 palette so the palette can change without breaking consumers.",
+  "color": {
+    "bg":            { "$type": "color", "$value": "{color.palette.kon-deep}",  "$description": "page ground" },
+    "surface":       { "$type": "color", "$value": "{color.palette.kon}",       "$description": "card / surface" },
+    "surface-raised":{ "$type": "color", "$value": "{color.palette.kon-panel}", "$description": "raised panel" },
+    "line":          { "$type": "color", "$value": "{color.palette.kon-line}",  "$description": "border / hairline" },
+    "text":          { "$type": "color", "$value": "{color.palette.neri}",      "$description": "body text" },
+    "text-muted":    { "$type": "color", "$value": "{color.palette.ginnezu}",   "$description": "meta / muted" },
+    "link":          { "$type": "color", "$value": "{color.palette.sango}",     "$description": "links / readings" },
+    "accent":        { "$type": "color", "$value": "{color.palette.yamabuki}",  "$description": "primary accent" },
+    "info":          { "$type": "color", "$value": "{color.palette.asagi}",     "$description": "headings / informational" },
+    "success":       { "$type": "color", "$value": "{color.palette.moegi}",     "$description": "strong / success" },
+    "warm":          { "$type": "color", "$value": "{color.palette.hitan}",     "$description": "warm literal accent" },
+    "focus":         { "$type": "color", "$value": "{color.palette.yamabuki}",  "$description": "focus ring" }
+  }
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="kon">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>kon-iro 紺色 — a 和色 design theme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../dist/kon-iro.css" />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--kon-bg);
+        color: var(--kon-text);
+        font-family: var(--kon-font-jp);
+        -webkit-font-smoothing: antialiased;
+        padding: clamp(1.5rem, 5vw, 4rem) 1.25rem 5rem;
+        transition: background 0.3s, color 0.3s;
+      }
+      .wrap { max-width: var(--kon-measure-reading); margin: 0 auto; }
+      .eyebrow {
+        font-family: var(--kon-font-mono);
+        font-size: var(--kon-size-label);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--kon-accent);
+        margin: 0 0 0.6rem;
+      }
+      h1 { font-size: clamp(2.5rem, 10vw, 4rem); line-height: 1.1; margin: 0; }
+      h1 .en { font-family: var(--kon-font-mono); font-size: 0.9rem; color: var(--kon-text-muted); display: block; margin-top: 0.6rem; letter-spacing: 0.1em; }
+      .lead { color: var(--kon-text-muted); line-height: 1.7; margin: 1.4rem 0 2.4rem; }
+      .toggle {
+        font-family: var(--kon-font-mono); font-size: 0.8rem;
+        background: var(--kon-surface); color: var(--kon-text);
+        border: 1px solid var(--kon-line); border-radius: var(--kon-radius-sm);
+        padding: 0.5rem 0.9rem; cursor: pointer;
+      }
+      .toggle:focus-visible { outline: 2px solid var(--kon-focus); outline-offset: 3px; }
+      h2 { font-family: var(--kon-font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kon-info); margin: 3rem 0 1rem; }
+      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; }
+      .swatch { background: var(--kon-surface); border: 1px solid var(--kon-line); border-radius: var(--kon-radius-md); overflow: hidden; }
+      .chip { height: 64px; }
+      .swatch .meta { padding: 0.6rem 0.7rem; }
+      .swatch .ja { font-size: 1.05rem; }
+      .swatch .ro { font-family: var(--kon-font-mono); font-size: 0.68rem; color: var(--kon-text-muted); }
+      .swatch .hex { font-family: var(--kon-font-mono); font-size: 0.68rem; color: var(--kon-text-muted); }
+      .card { background: var(--kon-surface-raised); border: 1px solid var(--kon-line); border-radius: var(--kon-radius-md); padding: 1.6rem; margin-top: 1rem; }
+      .card a { color: var(--kon-link); }
+      .card .accent { color: var(--kon-accent); font-weight: 700; }
+      .card .success { color: var(--kon-success); font-weight: 600; }
+      .card .warm { color: var(--kon-warm); }
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+      footer { margin-top: 3rem; font-family: var(--kon-font-mono); font-size: 0.72rem; color: var(--kon-text-muted); }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="row">
+        <div>
+          <p class="eyebrow">和色 design theme</p>
+          <h1>紺色<span class="en">kon-iro</span></h1>
+        </div>
+        <button class="toggle" id="toggle" aria-label="toggle theme">◐ 紺 / 和紙</button>
+      </div>
+
+      <p class="lead">
+        Deep indigo on dark, warm washi-paper on light — a small palette and type
+        system drawn from the traditional Japanese colors of 和紙 and 和菓子.
+      </p>
+
+      <h2>Semantic preview</h2>
+      <div class="card">
+        <p>Body text in <strong>練色</strong> on a 紺青 panel. Here is a
+          <a href="#">link in 珊瑚色</a>, an <span class="accent">accent in 山吹色</span>,
+          a <span class="success">success in 萌黄</span>, and a
+          <span class="warm">warm 退紅</span> note.</p>
+      </div>
+
+      <h2>和色 palette</h2>
+      <div class="swatches" id="swatches"></div>
+
+      <footer>kon-iro 紺色 · MIT · github.com/vbkmr/kon-iro</footer>
+    </main>
+
+    <script type="module">
+      const PALETTE = [
+        ["鉄紺", "tetsukon", "--kon-wa-kon-deep"],
+        ["紺", "kon", "--kon-wa-kon"],
+        ["紺青", "konjō", "--kon-wa-kon-panel"],
+        ["練色", "neri-iro", "--kon-wa-neri"],
+        ["銀鼠", "ginnezu", "--kon-wa-ginnezu"],
+        ["珊瑚色", "sango-iro", "--kon-wa-sango"],
+        ["山吹色", "yamabuki", "--kon-wa-yamabuki"],
+        ["浅葱色", "asagi-iro", "--kon-wa-asagi"],
+        ["萌黄", "moegi", "--kon-wa-moegi"],
+        ["退紅", "taikō", "--kon-wa-hitan"],
+        ["生成り", "kinari", "--kon-wa-washi"],
+        ["媚茶", "kobicha", "--kon-wa-kobicha"],
+        ["納戸色", "nando-iro", "--kon-wa-nando"],
+        ["千歳緑", "chitose", "--kon-wa-chitose"],
+        ["蘇芳", "suō", "--kon-wa-suo"],
+      ];
+      const cs = getComputedStyle(document.documentElement);
+      const grid = document.getElementById("swatches");
+      grid.innerHTML = PALETTE.map(([ja, ro, v]) => {
+        const hex = cs.getPropertyValue(v).trim();
+        return `<div class="swatch"><div class="chip" style="background:${hex}"></div>
+          <div class="meta"><div class="ja">${ja}</div><div class="ro">${ro}</div><div class="hex">${hex}</div></div></div>`;
+      }).join("");
+
+      const html = document.documentElement;
+      document.getElementById("toggle").addEventListener("click", () => {
+        html.dataset.theme = html.dataset.theme === "washi" ? "kon" : "washi";
+      });
+    </script>
+  </body>
+</html>

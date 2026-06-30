@@ -1,0 +1,122 @@
+{
+  "$description": "kon-iro 紺色 — the 和色 (wairo) palette tier. Raw, named Japanese-traditional colors. This is the brand DNA; semantic tokens reference these. Each color carries its kanji, romaji, and a short note in $extensions.kon-iro.",
+  "color": {
+    "palette": {
+      "kon-deep": {
+        "$type": "color",
+        "$value": "#0b1430",
+        "$description": "濃紺 / 鉄紺 — deepest indigo, the page ground.",
+        "$extensions": { "kon-iro": { "kanji": "鉄紺", "romaji": "tetsukon", "gloss": "iron indigo" } }
+      },
+      "kon": {
+        "$type": "color",
+        "$value": "#11213f",
+        "$description": "紺 — the namesake indigo; card / surface.",
+        "$extensions": { "kon-iro": { "kanji": "紺", "romaji": "kon", "gloss": "indigo" } }
+      },
+      "kon-panel": {
+        "$type": "color",
+        "$value": "#16274d",
+        "$description": "lighter 紺 — raised panel.",
+        "$extensions": { "kon-iro": { "kanji": "紺青", "romaji": "konjō", "gloss": "deep indigo-blue" } }
+      },
+      "kon-line": {
+        "$type": "color",
+        "$value": "#2b3e68",
+        "$description": "hairline / border on indigo.",
+        "$extensions": { "kon-iro": { "kanji": "藍墨", "romaji": "aizumi", "gloss": "indigo-ink line" } }
+      },
+      "neri": {
+        "$type": "color",
+        "$value": "#f0e8d6",
+        "$description": "練色 — warm off-white, the 和紙 (washi) paper tone; body text on dark.",
+        "$extensions": { "kon-iro": { "kanji": "練色", "romaji": "neri-iro", "gloss": "kneaded-silk cream" } }
+      },
+      "ginnezu": {
+        "$type": "color",
+        "$value": "#a9adb0",
+        "$description": "銀鼠 — silvery grey; muted meta / gloss.",
+        "$extensions": { "kon-iro": { "kanji": "銀鼠", "romaji": "ginnezu", "gloss": "silver-grey" } }
+      },
+      "sango": {
+        "$type": "color",
+        "$value": "#f5b1aa",
+        "$description": "珊瑚色 — coral; readings and links.",
+        "$extensions": { "kon-iro": { "kanji": "珊瑚色", "romaji": "sango-iro", "gloss": "coral" } }
+      },
+      "yamabuki": {
+        "$type": "color",
+        "$value": "#f8b500",
+        "$description": "山吹色 — bright golden yellow; primary accent.",
+        "$extensions": { "kon-iro": { "kanji": "山吹色", "romaji": "yamabuki-iro", "gloss": "kerria-flower gold" } }
+      },
+      "asagi": {
+        "$type": "color",
+        "$value": "#5bb7c0",
+        "$description": "浅葱色 — pale blue-green; headings / informational.",
+        "$extensions": { "kon-iro": { "kanji": "浅葱色", "romaji": "asagi-iro", "gloss": "light blue-green" } }
+      },
+      "moegi": {
+        "$type": "color",
+        "$value": "#aacf53",
+        "$description": "萌黄 — fresh green; strong / success.",
+        "$extensions": { "kon-iro": { "kanji": "萌黄", "romaji": "moegi", "gloss": "fresh-sprout green" } }
+      },
+      "hitan": {
+        "$type": "color",
+        "$value": "#f0937a",
+        "$description": "緋(淡) — soft scarlet; warm literal accent.",
+        "$extensions": { "kon-iro": { "kanji": "退紅", "romaji": "taikō", "gloss": "faded scarlet" } }
+      },
+
+      "washi": {
+        "$type": "color",
+        "$value": "#efe7d3",
+        "$description": "和紙 — warm paper ground for the light theme.",
+        "$extensions": { "kon-iro": { "kanji": "生成り", "romaji": "kinari", "gloss": "unbleached paper" } }
+      },
+      "washi-raised": {
+        "$type": "color",
+        "$value": "#f7f1e1",
+        "$description": "lighter washi — surface / card on the light theme.",
+        "$extensions": { "kon-iro": { "kanji": "白練", "romaji": "shironeri", "gloss": "white silk" } }
+      },
+      "washi-line": {
+        "$type": "color",
+        "$value": "#dcd0b4",
+        "$description": "faded line on paper.",
+        "$extensions": { "kon-iro": { "kanji": "砂色", "romaji": "suna-iro", "gloss": "sand line" } }
+      },
+      "kobicha": {
+        "$type": "color",
+        "$value": "#6a5d21",
+        "$description": "媚茶 — dull gold-brown; the deepened cousin of 山吹 for accent on paper (AA 5.3:1).",
+        "$extensions": { "kon-iro": { "kanji": "媚茶", "romaji": "kobicha", "gloss": "flirt-tea gold-brown" } }
+      },
+      "nando": {
+        "$type": "color",
+        "$value": "#1f6f78",
+        "$description": "納戸色 — deep teal for contrast on paper (light-theme info, AA 4.7:1).",
+        "$extensions": { "kon-iro": { "kanji": "納戸色", "romaji": "nando-iro", "gloss": "storeroom teal" } }
+      },
+      "chitose": {
+        "$type": "color",
+        "$value": "#316745",
+        "$description": "千歳緑 — deep evergreen; the deepened cousin of 萌黄 for success on paper (AA 7:1).",
+        "$extensions": { "kon-iro": { "kanji": "千歳緑", "romaji": "chitose-midori", "gloss": "thousand-year green" } }
+      },
+      "suo": {
+        "$type": "color",
+        "$value": "#9e3d3f",
+        "$description": "蘇芳 — sappanwood red; deepened cousin of 珊瑚/退紅 for links + warmth on paper (AA 5.3:1).",
+        "$extensions": { "kon-iro": { "kanji": "蘇芳", "romaji": "suō", "gloss": "sappanwood red" } }
+      },
+      "nibi": {
+        "$type": "color",
+        "$value": "#5e5d56",
+        "$description": "鈍色 — muted grey for meta text on paper (light theme).",
+        "$extensions": { "kon-iro": { "kanji": "鈍色", "romaji": "nibi-iro", "gloss": "dull grey" } }
+      }
+    }
+  }
+}

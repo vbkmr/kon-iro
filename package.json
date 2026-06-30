@@ -1,0 +1,38 @@
+{
+  "name": "kon-iro",
+  "version": "0.1.0",
+  "description": "kon-iro 紺色 — a Japanese-traditional (和色) design theme. Indigo-grounded dark + washi-paper light, shipped as design tokens, CSS variables, and a Tailwind preset.",
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "theme",
+    "css-variables",
+    "tailwind-preset",
+    "japanese",
+    "wairo",
+    "indigo",
+    "kon"
+  ],
+  "license": "MIT",
+  "author": "vbkmr",
+  "homepage": "https://github.com/vbkmr/kon-iro",
+  "repository": { "type": "git", "url": "https://github.com/vbkmr/kon-iro.git" },
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "files": ["dist", "tokens", "README.md", "LICENSE"],
+  "main": "./dist/kon-iro.ts",
+  "exports": {
+    ".": "./dist/kon-iro.ts",
+    "./css": "./dist/kon-iro.css",
+    "./tailwind": "./dist/tailwind-preset.cjs",
+    "./tokens": "./tokens/",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.mjs",
+    "verify": "echo 'TODO: run a contrast audit over tokens (see CONTRIBUTING.md)'"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}

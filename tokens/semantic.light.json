@@ -1,0 +1,17 @@
+{
+  "$description": "kon-iro — semantic tier, LIGHT 和紙 (washi) theme. Indigo ink on warm paper. Accents are deepened versions of the same 和色 so they meet contrast targets on a light ground.",
+  "color": {
+    "bg":            { "$type": "color", "$value": "{color.palette.washi}",        "$description": "paper ground" },
+    "surface":       { "$type": "color", "$value": "{color.palette.washi-raised}", "$description": "card / surface" },
+    "surface-raised":{ "$type": "color", "$value": "#fdfaf1",                       "$description": "raised panel" },
+    "line":          { "$type": "color", "$value": "{color.palette.washi-line}",   "$description": "border / hairline" },
+    "text":          { "$type": "color", "$value": "{color.palette.kon-deep}",     "$description": "indigo ink body text" },
+    "text-muted":    { "$type": "color", "$value": "{color.palette.nibi}",         "$description": "meta / muted" },
+    "link":          { "$type": "color", "$value": "{color.palette.suo}",          "$description": "links / readings" },
+    "accent":        { "$type": "color", "$value": "{color.palette.kobicha}",      "$description": "primary accent" },
+    "info":          { "$type": "color", "$value": "{color.palette.nando}",        "$description": "headings / informational" },
+    "success":       { "$type": "color", "$value": "{color.palette.chitose}",      "$description": "strong / success" },
+    "warm":          { "$type": "color", "$value": "{color.palette.suo}",          "$description": "warm literal accent" },
+    "focus":         { "$type": "color", "$value": "{color.palette.kobicha}",      "$description": "focus ring" }
+  }
+}
