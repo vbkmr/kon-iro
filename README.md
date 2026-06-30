@@ -159,7 +159,7 @@ React Native) later.
 - [ ] WCAG AA contrast audit for every text/accent-on-ground pairing
 - [ ] Native token outputs (SwiftUI, Compose, React Native)
 - [ ] Optional headless components
-- [ ] Publish `0.1.0` to npm
+- [x] Publish `0.1.0` to npm (automated release with signed provenance)
 
 ## License
 
