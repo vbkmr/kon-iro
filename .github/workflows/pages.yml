@@ -1,0 +1,67 @@
+name: Deploy palette to GitHub Pages
+
+# Publishes the static palette showcase (docs/index.html) to GitHub Pages.
+# The page is assembled together with the final colors from /dist, so the
+# published site always reflects exactly what npm ships — no committed copies
+# that could drift.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "dist/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+# Least-privilege token for the Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one in-flight deploy at a time; don't cancel a running publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Assemble site (showcase + final /dist colors)
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          # Ship the final colors as-is from /dist next to the page.
+          cp -R dist _site/dist
+          # Rewrite the dev-time stylesheet path (../dist) to the published layout (dist/).
+          sed 's#\.\./dist/kon-iro\.css#dist/kon-iro.css#' docs/index.html > _site/index.html
+          # Skip Jekyll processing.
+          touch _site/.nojekyll
+          echo "Assembled site:" && ls -R _site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -4,12 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>kon-iro 紺色 — a 和色 design theme</title>
+    <meta
+      name="description"
+      content="kon-iro 紺色 — a Japanese-traditional (和色) color palette and design theme. Deep indigo on dark, warm washi-paper on light. Each token keeps its kanji, romaji, and role."
+    />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="kon-iro 紺色 — a 和色 design theme" />
+    <meta
+      property="og:description"
+      content="A small, opinionated Japanese-traditional color palette. Click any swatch to copy its hex."
+    />
+    <meta property="og:url" content="https://vbkmr.github.io/kon-iro/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <!-- Final colors come straight from /dist (CI assembles dist/ next to this page). -->
     <link rel="stylesheet" href="../dist/kon-iro.css" />
     <style>
       * { box-sizing: border-box; }
@@ -22,7 +35,8 @@
         padding: clamp(1.5rem, 5vw, 4rem) 1.25rem 5rem;
         transition: background 0.3s, color 0.3s;
       }
-      .wrap { max-width: var(--kon-measure-reading); margin: 0 auto; }
+      .wrap { max-width: 880px; margin: 0 auto; }
+      a { color: var(--kon-link); }
       .eyebrow {
         font-family: var(--kon-font-mono);
         font-size: var(--kon-size-label);
@@ -33,29 +47,57 @@
       }
       h1 { font-size: clamp(2.5rem, 10vw, 4rem); line-height: 1.1; margin: 0; }
       h1 .en { font-family: var(--kon-font-mono); font-size: 0.9rem; color: var(--kon-text-muted); display: block; margin-top: 0.6rem; letter-spacing: 0.1em; }
-      .lead { color: var(--kon-text-muted); line-height: 1.7; margin: 1.4rem 0 2.4rem; }
+      .lead { color: var(--kon-text-muted); line-height: 1.7; margin: 1.4rem 0 2.4rem; max-width: var(--kon-measure-reading); }
       .toggle {
         font-family: var(--kon-font-mono); font-size: 0.8rem;
         background: var(--kon-surface); color: var(--kon-text);
         border: 1px solid var(--kon-line); border-radius: var(--kon-radius-sm);
-        padding: 0.5rem 0.9rem; cursor: pointer;
+        padding: 0.5rem 0.9rem; cursor: pointer; white-space: nowrap;
       }
       .toggle:focus-visible { outline: 2px solid var(--kon-focus); outline-offset: 3px; }
-      h2 { font-family: var(--kon-font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kon-info); margin: 3rem 0 1rem; }
-      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; }
-      .swatch { background: var(--kon-surface); border: 1px solid var(--kon-line); border-radius: var(--kon-radius-md); overflow: hidden; }
-      .chip { height: 64px; }
-      .swatch .meta { padding: 0.6rem 0.7rem; }
-      .swatch .ja { font-size: 1.05rem; }
-      .swatch .ro { font-family: var(--kon-font-mono); font-size: 0.68rem; color: var(--kon-text-muted); }
-      .swatch .hex { font-family: var(--kon-font-mono); font-size: 0.68rem; color: var(--kon-text-muted); }
-      .card { background: var(--kon-surface-raised); border: 1px solid var(--kon-line); border-radius: var(--kon-radius-md); padding: 1.6rem; margin-top: 1rem; }
-      .card a { color: var(--kon-link); }
+      h2 { font-family: var(--kon-font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kon-info); margin: 3.4rem 0 0.3rem; }
+      .section-note { color: var(--kon-text-muted); font-family: var(--kon-font-mono); font-size: 0.72rem; margin: 0 0 1.1rem; }
+      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.8rem; }
+      .swatch {
+        background: var(--kon-surface); border: 1px solid var(--kon-line);
+        border-radius: var(--kon-radius-md); overflow: hidden; text-align: left;
+        padding: 0; cursor: pointer; color: inherit; font: inherit;
+        transition: transform 0.15s var(--kon-motion-ease), border-color 0.15s;
+      }
+      .swatch:hover { transform: translateY(-2px); border-color: var(--kon-accent); }
+      .swatch:focus-visible { outline: 2px solid var(--kon-focus); outline-offset: 2px; }
+      .chip { height: 66px; width: 100%; display: block; }
+      .swatch .meta { padding: 0.6rem 0.7rem 0.7rem; }
+      .swatch .ja { font-size: 1.05rem; line-height: 1.2; }
+      .swatch .ro { font-family: var(--kon-font-mono); font-size: 0.68rem; color: var(--kon-text-muted); margin-top: 0.1rem; }
+      .swatch .hex { font-family: var(--kon-font-mono); font-size: 0.7rem; color: var(--kon-text); margin-top: 0.35rem; }
+      .swatch .role { font-size: 0.74rem; color: var(--kon-text-muted); margin-top: 0.3rem; line-height: 1.35; }
+      .swatch .var { font-family: var(--kon-font-mono); font-size: 0.62rem; color: var(--kon-text-muted); margin-top: 0.3rem; word-break: break-all; }
+      .card { background: var(--kon-surface-raised); border: 1px solid var(--kon-line); border-radius: var(--kon-radius-md); padding: 1.6rem; margin-top: 1rem; line-height: 1.7; }
       .card .accent { color: var(--kon-accent); font-weight: 700; }
       .card .success { color: var(--kon-success); font-weight: 600; }
       .card .warm { color: var(--kon-warm); }
+      .type-row { border-top: 1px solid var(--kon-line); padding: 1rem 0; }
+      .type-row:first-child { border-top: 0; }
+      .type-row .label { font-family: var(--kon-font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kon-text-muted); }
+      .type-sample-jp { font-family: var(--kon-font-jp); font-size: 1.8rem; margin: 0.3rem 0 0; }
+      .type-sample-sans { font-family: var(--kon-font-sans); font-size: 1.3rem; margin: 0.3rem 0 0; }
+      .type-sample-mono { font-family: var(--kon-font-mono); font-size: 1.1rem; margin: 0.3rem 0 0; }
       .row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-      footer { margin-top: 3rem; font-family: var(--kon-font-mono); font-size: 0.72rem; color: var(--kon-text-muted); }
+      footer { margin-top: 3.4rem; font-family: var(--kon-font-mono); font-size: 0.72rem; color: var(--kon-text-muted); line-height: 1.7; }
+      footer a { color: var(--kon-link); }
+      footer code { color: var(--kon-text); }
+      .toast {
+        position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%) translateY(140%);
+        background: var(--kon-surface-raised); color: var(--kon-text);
+        border: 1px solid var(--kon-accent); border-radius: var(--kon-radius-sm);
+        font-family: var(--kon-font-mono); font-size: 0.8rem; padding: 0.55rem 1rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35); transition: transform 0.3s var(--kon-motion-ease); z-index: 10;
+      }
+      .toast.show { transform: translateX(-50%) translateY(0); }
+      @media (prefers-reduced-motion: reduce) {
+        *, body, .swatch, .toast { transition: none !important; }
+      }
     </style>
   </head>
   <body>
@@ -65,58 +107,167 @@
           <p class="eyebrow">和色 design theme</p>
           <h1>紺色<span class="en">kon-iro</span></h1>
         </div>
-        <button class="toggle" id="toggle" aria-label="toggle theme">◐ 紺 / 和紙</button>
+        <button class="toggle" id="toggle" aria-label="Toggle between 紺 (dark) and 和紙 (light) themes">◐ 紺 / 和紙</button>
       </div>
 
       <p class="lead">
         Deep indigo on dark, warm washi-paper on light — a small palette and type
-        system drawn from the traditional Japanese colors of 和紙 and 和菓子.
+        system drawn from the traditional Japanese colors of 和紙 (handmade paper)
+        and 和菓子 (seasonal sweets). Toggle the theme, and click any swatch to copy
+        its hex.
       </p>
+
+      <h2>Semantic tokens · <span id="theme-name">紺 kon</span></h2>
+      <p class="section-note">The variables apps actually consume — they resolve to different 和色 per theme.</p>
+      <div class="swatches" id="semantic"></div>
+
+      <h2>和色 palette</h2>
+      <p class="section-note">The raw cultural layer — 17 traditional colors, each kept with its kanji &amp; romaji.</p>
+      <div class="swatches" id="palette"></div>
 
       <h2>Semantic preview</h2>
       <div class="card">
-        <p>Body text in <strong>練色</strong> on a 紺青 panel. Here is a
-          <a href="#">link in 珊瑚色</a>, an <span class="accent">accent in 山吹色</span>,
+        <p style="margin:0">Body text in <strong>練色</strong> on a raised panel. Here is a
+          <a href="#">link</a>, an <span class="accent">accent in 山吹色</span>,
           a <span class="success">success in 萌黄</span>, and a
-          <span class="warm">warm 退紅</span> note.</p>
+          <span class="warm">warm 退紅</span> note — all from the semantic tokens above.</p>
       </div>
 
-      <h2>和色 palette</h2>
-      <div class="swatches" id="swatches"></div>
+      <h2>Type</h2>
+      <div class="card">
+        <div class="type-row">
+          <div class="label">明朝 — Shippori Mincho · display + Japanese</div>
+          <p class="type-sample-jp">紺色 — 日本の伝統色</p>
+        </div>
+        <div class="type-row">
+          <div class="label">ゴシック — Zen Kaku Gothic New · UI text</div>
+          <p class="type-sample-sans">The quick brown fox 素早い茶色の狐</p>
+        </div>
+        <div class="type-row">
+          <div class="label">JetBrains Mono · labels, meta, readings</div>
+          <p class="type-sample-mono">--kon-accent: #f8b500;</p>
+        </div>
+      </div>
 
-      <footer>kon-iro 紺色 · MIT · github.com/vbkmr/kon-iro</footer>
+      <footer>
+        kon-iro 紺色 · MIT ·
+        <a href="https://github.com/vbkmr/kon-iro">github.com/vbkmr/kon-iro</a><br />
+        Colors served from <code>/dist</code>. The 和色 names and hex values are
+        traditional and free to use.
+      </footer>
     </main>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script type="module">
+      // 17 raw 和色, each [kanji, romaji, css-var, role]. Hex is read from the
+      // loaded dist stylesheet at runtime, so it is always the final /dist value.
       const PALETTE = [
-        ["鉄紺", "tetsukon", "--kon-wa-kon-deep"],
-        ["紺", "kon", "--kon-wa-kon"],
-        ["紺青", "konjō", "--kon-wa-kon-panel"],
-        ["練色", "neri-iro", "--kon-wa-neri"],
-        ["銀鼠", "ginnezu", "--kon-wa-ginnezu"],
-        ["珊瑚色", "sango-iro", "--kon-wa-sango"],
-        ["山吹色", "yamabuki", "--kon-wa-yamabuki"],
-        ["浅葱色", "asagi-iro", "--kon-wa-asagi"],
-        ["萌黄", "moegi", "--kon-wa-moegi"],
-        ["退紅", "taikō", "--kon-wa-hitan"],
-        ["生成り", "kinari", "--kon-wa-washi"],
-        ["媚茶", "kobicha", "--kon-wa-kobicha"],
-        ["納戸色", "nando-iro", "--kon-wa-nando"],
-        ["千歳緑", "chitose", "--kon-wa-chitose"],
-        ["蘇芳", "suō", "--kon-wa-suo"],
+        ["鉄紺", "tetsukon", "--kon-wa-kon-deep", "page ground (dark)"],
+        ["紺", "kon", "--kon-wa-kon", "surface / card"],
+        ["紺青", "konjō", "--kon-wa-kon-panel", "raised panel"],
+        ["藍墨", "aizumi", "--kon-wa-kon-line", "hairlines / borders"],
+        ["練色", "neri-iro", "--kon-wa-neri", "body text (cream)"],
+        ["銀鼠", "ginnezu", "--kon-wa-ginnezu", "muted / meta"],
+        ["珊瑚色", "sango-iro", "--kon-wa-sango", "links / readings"],
+        ["山吹色", "yamabuki-iro", "--kon-wa-yamabuki", "primary accent"],
+        ["浅葱色", "asagi-iro", "--kon-wa-asagi", "headings / info"],
+        ["萌黄", "moegi", "--kon-wa-moegi", "strong / success"],
+        ["退紅", "taikō", "--kon-wa-hitan", "warm accent"],
+        ["生成り", "kinari", "--kon-wa-washi", "page ground (light)"],
+        ["媚茶", "kobicha", "--kon-wa-kobicha", "accent (light)"],
+        ["納戸色", "nando-iro", "--kon-wa-nando", "info (light)"],
+        ["千歳緑", "chitose-midori", "--kon-wa-chitose", "success (light)"],
+        ["蘇芳", "suō", "--kon-wa-suo", "link / warm (light)"],
+        ["鈍色", "nibi-iro", "--kon-wa-nibi", "muted (light)"],
       ];
-      const cs = getComputedStyle(document.documentElement);
-      const grid = document.getElementById("swatches");
-      grid.innerHTML = PALETTE.map(([ja, ro, v]) => {
-        const hex = cs.getPropertyValue(v).trim();
-        return `<div class="swatch"><div class="chip" style="background:${hex}"></div>
-          <div class="meta"><div class="ja">${ja}</div><div class="ro">${ro}</div><div class="hex">${hex}</div></div></div>`;
-      }).join("");
+
+      // Semantic tokens apps consume; these re-resolve per theme.
+      const SEMANTIC = [
+        ["ground", "--kon-bg"],
+        ["surface", "--kon-surface"],
+        ["raised", "--kon-surface-raised"],
+        ["line", "--kon-line"],
+        ["text", "--kon-text"],
+        ["text muted", "--kon-text-muted"],
+        ["link", "--kon-link"],
+        ["accent", "--kon-accent"],
+        ["info", "--kon-info"],
+        ["success", "--kon-success"],
+        ["warm", "--kon-warm"],
+        ["focus", "--kon-focus"],
+      ];
 
       const html = document.documentElement;
-      document.getElementById("toggle").addEventListener("click", () => {
-        html.dataset.theme = html.dataset.theme === "washi" ? "kon" : "washi";
+      const read = (v) => getComputedStyle(html).getPropertyValue(v).trim();
+      const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+      function swatch({ ja, ro, hex, role, varName }) {
+        return `<button class="swatch" data-hex="${esc(hex)}" title="Copy ${esc(hex)}">
+          <span class="chip" style="background:${esc(hex)}"></span>
+          <span class="meta">
+            <span class="ja">${esc(ja)}</span>
+            ${ro ? `<span class="ro">${esc(ro)}</span>` : ""}
+            <span class="hex">${esc(hex)}</span>
+            ${role ? `<span class="role">${esc(role)}</span>` : ""}
+            <span class="var">${esc(varName)}</span>
+          </span>
+        </button>`;
+      }
+
+      function renderPalette() {
+        document.getElementById("palette").innerHTML = PALETTE
+          .map(([ja, ro, v, role]) => swatch({ ja, ro, hex: read(v), role, varName: v }))
+          .join("");
+      }
+
+      function renderSemantic() {
+        document.getElementById("semantic").innerHTML = SEMANTIC
+          .map(([name, v]) => swatch({ ja: name, ro: "", hex: read(v), role: "", varName: v }))
+          .join("");
+      }
+
+      // ── copy-to-clipboard with a small toast ────────────────────
+      const toast = document.getElementById("toast");
+      let toastTimer;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
+      }
+      document.body.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".swatch");
+        if (!btn) return;
+        const hex = btn.dataset.hex;
+        try {
+          await navigator.clipboard.writeText(hex);
+          showToast(`copied ${hex}`);
+        } catch {
+          showToast(hex);
+        }
       });
+
+      // ── theme toggle (persisted) ────────────────────────────────
+      const THEMES = { kon: "紺 kon", washi: "和紙 washi" };
+      function applyTheme(name) {
+        html.dataset.theme = name;
+        document.getElementById("theme-name").textContent = THEMES[name];
+        renderSemantic();
+        renderPalette();
+        try { localStorage.setItem("kon-iro-theme", name); } catch {}
+      }
+      try {
+        const saved = localStorage.getItem("kon-iro-theme");
+        if (saved === "kon" || saved === "washi") html.dataset.theme = saved;
+      } catch {}
+
+      document.getElementById("toggle").addEventListener("click", () => {
+        applyTheme(html.dataset.theme === "washi" ? "kon" : "washi");
+      });
+
+      // initial paint
+      applyTheme(html.dataset.theme === "washi" ? "washi" : "kon");
     </script>
   </body>
 </html>
